@@ -30,13 +30,13 @@ public class EditarMensalidadeController {
 
         comboStatus.getItems().addAll("Ativo", "Inativo");
         comboDias.getItems().addAll(3, 4, 5);
-        comboModalidade.getItems().addAll("Natação", "Judô", "JiuJitsu");
+        comboModalidade.getItems().addAll("Natação", "Judô", "JiuJitsu", "Musculação");
 
-        // recalcular valor ao mudar dias
+
         comboDias.setOnAction(e -> recalcularValor());
     }
 
-    // ===== CÁLCULO DO VALOR =====
+
     private double calcularValor(int dias) {
         switch (dias) {
             case 3: return 80.0;
@@ -53,7 +53,6 @@ public class EditarMensalidadeController {
         }
     }
 
-    // ===== SALVAR =====
     @FXML
     private void salvar() {
 
@@ -63,14 +62,11 @@ public class EditarMensalidadeController {
             mensalidadeEdicao.setModalidade(comboModalidade.getValue());
             mensalidadeEdicao.setValor(Double.parseDouble(txtValor.getText()));
 
-            // 🔥 REGRA: se status = ATIVO → recalcular mês e data
             if ("Ativo".equals(comboStatus.getValue())) {
 
-                // mês atual + 1
-                int novoMes = Calendar.getInstance().get(Calendar.MONTH) + 2;
+                int novoMes = Calendar.getInstance().get(Calendar.MONTH) + 1;
                 mensalidadeEdicao.setMes(novoMes);
 
-                // data de pagamento = hoje + 1 mês
                 Calendar novaData = Calendar.getInstance();
                 novaData.add(Calendar.MONTH, 1);
                 mensalidadeEdicao.setData_pg(novaData);

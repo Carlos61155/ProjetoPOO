@@ -9,9 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
-import java.util.Calendar;
 
-public class ClienteController {
+public class AdicionarClienteController {
 
     private Cliente clienteEdicao = null;
 
@@ -66,7 +65,8 @@ public class ClienteController {
         comboModalidade.getItems().addAll(
                 "Natação",
                 "Judô",
-                "JiuJitsu"
+                "JiuJitsu",
+                "Musculação"
         );
     }
 
