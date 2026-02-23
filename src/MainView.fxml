@@ -8,9 +8,9 @@
 
 <AnchorPane fx:id="contentArea" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <BorderPane layoutX="150.0" layoutY="100.0" prefHeight="200.0" prefWidth="299.0">
+      <BorderPane layoutX="180.0" layoutY="100.0" prefHeight="200.0" prefWidth="239.0">
          <top>
-            <MenuBar prefHeight="26.0" prefWidth="226.0" BorderPane.alignment="CENTER">
+            <MenuBar prefHeight="26.0" prefWidth="278.0" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" text="Clientes">
                   <items>
@@ -22,16 +22,18 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Personais">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#adicionarPersonais" text="Adicionar" />
+                        <MenuItem mnemonicParsing="false" onAction="#editarPersonais" text="Editar" />
+                        <MenuItem mnemonicParsing="false" onAction="#excluirPersonais" text="Deletar" />
+                        <MenuItem mnemonicParsing="false" onAction="#listarPersonais" text="Listar" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Mensalidades">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#editarMensalidades" text="Editar" />
-                        <MenuItem  mnemonicParsing="false" onAction="#listarMensalidades" text="Listar" />
+                        <MenuItem mnemonicParsing="false" onAction="#listarMensalidades" text="Listar" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Agenda" />
               </menus>
             </MenuBar>
          </top>

@@ -33,20 +33,11 @@ public class ExcluirClienteController {
         }
     }
 
-    @FXML
-    private void cancelar() {
-        fecharJanela();
-    }
-
     private void mostrarAlerta(String titulo, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setContentText(msg);
         alert.showAndWait();
-    }
-
-    private void fecharJanela() {
-        txtId.getScene().getWindow().hide();
     }
 
     @FXML

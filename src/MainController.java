@@ -33,6 +33,22 @@ public class MainController {
         carregarTela("/SelectMensalidadesView.fxml");
     }
 
+    public void adicionarPersonais() throws IOException {
+        carregarTela("/AdicionarPersonalView.fxml");
+    }
+
+    public void listarPersonais() throws IOException {
+        carregarTela("/SelectPersonalView.fxml");
+    }
+
+    public void excluirPersonais() throws IOException {
+        carregarTela("/ExcluirPersonalView.fxml");
+    }
+
+    public void editarPersonais() throws IOException {
+        carregarTela("/ListaPersonaisView.fxml");
+    }
+
     private void carregarTela(String caminho) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource(caminho));
         contentArea.getChildren().setAll(pane);

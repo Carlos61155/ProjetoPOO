@@ -12,9 +12,7 @@
 
         <TextField fx:id="txtId" layoutX="190.0" layoutY="150.0" prefWidth="120" />
 
-        <Button layoutX="155.0" layoutY="224.0" onAction="#excluir" text="Excluir" />
-
-        <Button layoutX="219.0" layoutY="224.0" onAction="#cancelar" text="Cancelar" />
-      <Button fx:id="btnVoltar" layoutX="294.0" layoutY="224.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+        <Button layoutX="165.0" layoutY="224.0" onAction="#excluir" text="Excluir" />
+      <Button fx:id="btnVoltar" layoutX="286.0" layoutY="224.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
     </children>
 </AnchorPane>

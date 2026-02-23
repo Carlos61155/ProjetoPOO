@@ -9,7 +9,6 @@ public class EditarClienteController {
 
     private Cliente clienteEdicao = null;
 
-    // ===== RECEBE CLIENTE PARA EDIÇÃO =====
     public void setCliente(Cliente c) {
         this.clienteEdicao = c;
 
@@ -24,7 +23,6 @@ public class EditarClienteController {
     @FXML private TextField txtCpf;
     @FXML private ComboBox<String> comboSexo;
 
-    // ===== INICIALIZA COMBO =====
     @FXML
     public void initialize() {
         comboSexo.getItems().addAll(
@@ -33,12 +31,12 @@ public class EditarClienteController {
         );
     }
 
-    // ===== SALVAR (CADASTRAR OU EDITAR) =====
+
     @FXML
     private void salvar() {
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-            // ===== CADASTRO =====
+
             if (clienteEdicao == null) {
 
                 Cliente c = new Cliente(
@@ -52,7 +50,6 @@ public class EditarClienteController {
                 DAOCliente.insertDataClient(conn, c);
             }
 
-            // ===== EDIÇÃO =====
             else {
                 clienteEdicao.setNome(txtNome.getText());
                 clienteEdicao.setCpf(txtCpf.getText());
@@ -76,7 +73,6 @@ public class EditarClienteController {
         fecharJanela();
     }
 
-    // ===== UTILIDADES =====
     private void mostrarAlerta(String titulo, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
