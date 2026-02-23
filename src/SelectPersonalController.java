@@ -37,10 +37,8 @@ public class SelectPersonalController {
 
     private void carregar() {
         try (Connection conn = Conexao.getConexaoMySql()) {
-            ObservableList<Personal> lista =
-                    FXCollections.observableArrayList(
-                            DAOPersonal.selectDataPersonal(conn)
-                    );
+            ObservableList<Personal> lista = FXCollections.observableArrayList(DAOPersonal.selectDataPersonal(conn));
+
             tabelaPersonal.setItems(lista);
         } catch (Exception e) {
             e.printStackTrace();

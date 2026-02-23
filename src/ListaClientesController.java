@@ -18,7 +18,6 @@ public class ListaClientesController {
     @FXML
     private TableView<Cliente> tabelaClientes;
     @FXML private TableColumn<Cliente, Integer> colId;
-    @FXML private TableColumn<Cliente, Integer> colMensalidade;
     @FXML private TableColumn<Cliente, String> colNome;
     @FXML private TableColumn<Cliente, String> colTelefone;
     @FXML private TableColumn<Cliente, String> colCpf;
@@ -38,10 +37,7 @@ public class ListaClientesController {
     private void carregarClientes() {
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-            ObservableList<Cliente> lista =
-                    FXCollections.observableArrayList(
-                            DAOCliente.SelectDataClient(conn)
-                    );
+            ObservableList<Cliente> lista = FXCollections.observableArrayList(DAOCliente.SelectDataClient(conn));
 
             tabelaClientes.setItems(lista);
 
@@ -53,27 +49,25 @@ public class ListaClientesController {
     @FXML
     private void editarCliente() {
         try {
-            Cliente selecionado =
-                    tabelaClientes.getSelectionModel().getSelectedItem();
+            Cliente selecionado = tabelaClientes.getSelectionModel().getSelectedItem();
 
             if (selecionado == null) {
                 mostrarAlerta("Erro", "Selecione um cliente.");
                 return;
             }
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("/EditarClienteView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditarClienteView.fxml"));//prepara para carregar a tela
 
-            Parent root = loader.load();
+            Parent root = loader.load();//o controller é criado
 
-            EditarClienteController controller = loader.getController();
-            controller.setCliente(selecionado); // ← AQUI PASSA O CLIENTE
+            EditarClienteController controller = loader.getController();// pega o controller que foi criado
+            controller.setCliente(selecionado);//passa o cliente que deve ser editado para a tela
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            carregarClientes(); // recarrega após editar
+            carregarClientes();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,8 +75,7 @@ public class ListaClientesController {
     }
 
     private void mostrarAlerta(String titulo, String msg) {
-        javafx.scene.control.Alert alert =
-                new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setContentText(msg);
         alert.showAndWait();

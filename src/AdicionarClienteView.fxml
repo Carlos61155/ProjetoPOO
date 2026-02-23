@@ -16,14 +16,13 @@
             <ComboBox fx:id="comboSexo" prefWidth="150.0" promptText="Sexo" />
          </children>
       </VBox>
-      <Button fx:id="salvar" layoutX="201.0" layoutY="271.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+      <Button fx:id="salvar" layoutX="225.0" layoutY="271.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
       <VBox layoutX="238.0" layoutY="81.0" prefHeight="48.0" prefWidth="122.0">
          <children>
             <ComboBox fx:id="diasTreino" prefWidth="150.0" promptText="Dias de Treino" />
             <ComboBox fx:id="comboModalidade" prefWidth="150.0" promptText="Modalidade" />
          </children>
       </VBox>
-      <Button fx:id="cancelar" layoutX="269.0" layoutY="271.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-      <Button fx:id="btnVoltar" layoutX="349.0" layoutY="271.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <Button fx:id="btnVoltar" layoutX="325.0" layoutY="271.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
    </children>
 </AnchorPane>

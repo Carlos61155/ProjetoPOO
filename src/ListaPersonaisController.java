@@ -51,21 +51,18 @@ public class ListaPersonaisController {
 
         try {
 
-            Personal selecionado =
-                    tabelaPersonal.getSelectionModel().getSelectedItem();
+            Personal selecionado = tabelaPersonal.getSelectionModel().getSelectedItem();
 
             if (selecionado == null) {
                 mostrarAlerta("Erro", "Selecione um personal.");
                 return;
             }
 
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("/EditarPersonalView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditarPersonalView.fxml"));
 
             Parent root = loader.load();
 
-            EditarPersonalController controller =
-                    loader.getController();
+            EditarPersonalController controller = loader.getController();
 
             controller.setPersonal(selecionado);
 
@@ -73,7 +70,7 @@ public class ListaPersonaisController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            carregar(); // atualiza tabela
+            carregar();
 
         } catch (Exception e) {
             e.printStackTrace();

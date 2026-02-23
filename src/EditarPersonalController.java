@@ -25,12 +25,7 @@ public class EditarPersonalController {
     @FXML
     public void initialize() {
         comboSexo.getItems().addAll("Masculino", "Feminino");
-        comboEspecialidade.getItems().addAll(
-                "Musculação",
-                "Judô",
-                "Natação",
-                "Jiu Jitsu"
-        );
+        comboEspecialidade.getItems().addAll("Musculação", "Judô", "Natação", "Jiu Jitsu");
     }
 
     @FXML

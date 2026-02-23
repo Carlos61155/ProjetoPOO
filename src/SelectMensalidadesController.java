@@ -33,7 +33,7 @@ public class SelectMensalidadesController {
         colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
         colModalidade.setCellValueFactory(new PropertyValueFactory<>("modalidade"));
 
-        // Converter Calendar → String para mostrar na tabela
+        //Converte calendar para String
         colDataPg.setCellValueFactory(cellData -> {
             if (cellData.getValue().getData_pg() != null) {
                 return new javafx.beans.property.SimpleStringProperty(
@@ -49,10 +49,7 @@ public class SelectMensalidadesController {
     private void carregarMensalidades() {
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-            ObservableList<Mensalidade> lista =
-                    FXCollections.observableArrayList(
-                            DAOMensalidade.SelectDataMensalidade(conn)
-                    );
+            ObservableList<Mensalidade> lista = FXCollections.observableArrayList(DAOMensalidade.SelectDataMensalidade(conn));
 
             tabelaMensalidades.setItems(lista);
 
@@ -61,7 +58,6 @@ public class SelectMensalidadesController {
         }
     }
 
-    // ===== VOLTAR =====
     @FXML private Button btnVoltar;
 
     @FXML

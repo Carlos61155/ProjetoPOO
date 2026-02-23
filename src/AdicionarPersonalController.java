@@ -24,12 +24,7 @@ public class AdicionarPersonalController {
 
         comboSexo.getItems().addAll("Masculino", "Feminino");
 
-        comboEspecialidade.getItems().addAll(
-                "Musculação",
-                "Judô",
-                "Natação",
-                "Jiu Jitsu"
-        );
+        comboEspecialidade.getItems().addAll("Musculação", "Judô", "Natação", "Jiu Jitsu");
     }
 
     @FXML
@@ -37,13 +32,7 @@ public class AdicionarPersonalController {
 
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-            Personal p = new Personal(
-                    txtNome.getText(),
-                    txtCpf.getText(),
-                    comboSexo.getValue(),
-                    txtTelefone.getText(),
-                    comboEspecialidade.getValue()
-            );
+            Personal p = new Personal(txtNome.getText(), txtCpf.getText(), comboSexo.getValue(), txtTelefone.getText(), comboEspecialidade.getValue());
 
             DAOPersonal.insertDataPersonal(conn, p);
 

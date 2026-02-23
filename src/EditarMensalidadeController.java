@@ -15,7 +15,6 @@ public class EditarMensalidadeController {
     @FXML private ComboBox<String> comboModalidade;
     @FXML private TextField txtValor;
 
-    // ===== RECEBE A MENSALIDADE SELECIONADA =====
     public void setMensalidade(Mensalidade m) {
         this.mensalidadeEdicao = m;
 
@@ -24,7 +23,6 @@ public class EditarMensalidadeController {
         txtValor.setText(String.valueOf(m.getValor()));
     }
 
-    // ===== INICIALIZA COMBOBOX =====
     @FXML
     public void initialize() {
 
@@ -83,7 +81,6 @@ public class EditarMensalidadeController {
         }
     }
 
-    // ===== UTIL =====
     private void mostrarAlerta(String titulo, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);

@@ -18,6 +18,10 @@ public class Cliente {
 
     }
 
+    public Integer getMensalidadeId() {
+        return mensalidade != null ? mensalidade.getId() : null;
+    }
+
     public String getNome() {
         return nome;
     }

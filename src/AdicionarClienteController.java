@@ -12,21 +12,6 @@ import java.sql.Connection;
 
 public class AdicionarClienteController {
 
-    private Cliente clienteEdicao = null;
-
-    public void setCliente(Cliente c) {
-        this.clienteEdicao = c;
-
-        txtNome.setText(c.getNome());
-        txtCpf.setText(c.getCpf());
-        txtTelefone.setText(c.getTelefone());
-        comboSexo.setValue(c.getSexo());
-
-        if (c.getMensalidade() != null) {
-            comboModalidade.setValue(c.getMensalidade().getModalidade());
-        }
-    }
-
     private double calcularValorMensalidade(int dias) {
         switch (dias) {
             case 3: return 80.0;
@@ -51,23 +36,11 @@ public class AdicionarClienteController {
 
     @FXML
     public void initialize() {
-        comboSexo.getItems().addAll(
-                "Masculino",
-                "Feminino"
-        );
+        comboSexo.getItems().addAll("Masculino", "Feminino");
 
-        diasTreino.getItems().addAll(
-                3,
-                4,
-                5
-        );
+        diasTreino.getItems().addAll(3, 4, 5);
 
-        comboModalidade.getItems().addAll(
-                "Natação",
-                "Judô",
-                "JiuJitsu",
-                "Musculação"
-        );
+        comboModalidade.getItems().addAll("Natação", "Judô", "JiuJitsu", "Musculação");
     }
 
     @FXML
@@ -77,59 +50,26 @@ public class AdicionarClienteController {
             int dias = diasTreino.getValue();
             double valor = calcularValorMensalidade(dias);
 
-            // ===== CADASTRO =====
-            if (clienteEdicao == null) {
+            Mensalidade m = new Mensalidade(valor, comboModalidade.getValue());
+            DAOMensalidade.insertDataMensalidade(conn, m);
 
-                Mensalidade m = new Mensalidade(valor, comboModalidade.getValue());
-                DAOMensalidade.insertDataMensalidade(conn, m);
+            Cliente c = new Cliente(txtNome.getText(), txtCpf.getText(), comboSexo.getValue(), txtTelefone.getText(), m);
 
-                Cliente c = new Cliente(
-                        txtNome.getText(),
-                        txtCpf.getText(),
-                        comboSexo.getValue(),
-                        txtTelefone.getText(),
-                        m
-                );
+            DAOCliente.insertDataClient(conn, c);
 
-                DAOCliente.insertDataClient(conn, c);
-            }
-
-            // ===== EDIÇÃO =====
-            else {
-                clienteEdicao.setNome(txtNome.getText());
-                clienteEdicao.setCpf(txtCpf.getText());
-                clienteEdicao.setSexo(comboSexo.getValue());
-                clienteEdicao.setTelefone(txtTelefone.getText());
-
-                DAOCliente.updateDataClient(conn, clienteEdicao);
-            }
-
-            mostrarAlerta("Sucesso", "Operação realizada!");
+            mostrarAlerta("Sucesso", "Cliente cadastrado!");
             voltar();
 
         } catch (Exception e) {
-            e.printStackTrace();
             mostrarAlerta("Erro", "Falha ao salvar.");
         }
     }
 
-    @FXML
-    private void cancelar() {
-        fecharJanela();
-    }
-
-
-
-    // ===== Utilidades =====
     private void mostrarAlerta(String titulo, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setContentText(msg);
         alert.showAndWait();
-    }
-
-    private void fecharJanela() {
-        txtNome.getScene().getWindow().hide();
     }
 
     @FXML
@@ -145,7 +85,5 @@ public class AdicionarClienteController {
         Stage stage = (Stage) btnVoltar.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
-
-
 
 }

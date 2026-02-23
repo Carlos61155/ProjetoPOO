@@ -29,19 +29,9 @@ public class SelectClientesController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-
-        colMensalidade.setCellValueFactory(cellData -> {
-
-            Cliente c = cellData.getValue();
-
-            if (c.getMensalidade() != null) {
-                return new javafx.beans.property.SimpleIntegerProperty(
-                        c.getMensalidade().getId()
-                ).asObject();
-            } else {
-                return null;
-            }
-        });
+        colMensalidade.setCellValueFactory(
+                new PropertyValueFactory<>("mensalidadeId")
+        );
 
         carregarClientes();
     }
@@ -49,10 +39,7 @@ public class SelectClientesController {
     private void carregarClientes() {
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-            ObservableList<Cliente> lista =
-                    FXCollections.observableArrayList(
-                            DAOCliente.SelectDataClient(conn)
-                    );
+            ObservableList<Cliente> lista = FXCollections.observableArrayList(DAOCliente.SelectDataClient(conn));
 
             tabelaClientes.setItems(lista);
 

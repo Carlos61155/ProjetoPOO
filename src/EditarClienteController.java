@@ -7,7 +7,7 @@ import java.sql.Connection;
 
 public class EditarClienteController {
 
-    private Cliente clienteEdicao = null;
+    private Cliente clienteEdicao;
 
     public void setCliente(Cliente c) {
         this.clienteEdicao = c;
@@ -25,46 +25,32 @@ public class EditarClienteController {
 
     @FXML
     public void initialize() {
-        comboSexo.getItems().addAll(
-                "Masculino",
-                "Feminino"
-        );
+        comboSexo.getItems().addAll("Masculino", "Feminino");
     }
+
 
 
     @FXML
     private void salvar() {
         try (Connection conn = Conexao.getConexaoMySql()) {
 
-
             if (clienteEdicao == null) {
-
-                Cliente c = new Cliente(
-                        txtNome.getText(),
-                        txtCpf.getText(),
-                        comboSexo.getValue(),
-                        txtTelefone.getText(),
-                        null
-                );
-
-                DAOCliente.insertDataClient(conn, c);
+                mostrarAlerta("Erro", "Cliente não carregado para edição.");
+                return;
             }
 
-            else {
-                clienteEdicao.setNome(txtNome.getText());
-                clienteEdicao.setCpf(txtCpf.getText());
-                clienteEdicao.setSexo(comboSexo.getValue());
-                clienteEdicao.setTelefone(txtTelefone.getText());
+            clienteEdicao.setNome(txtNome.getText());
+            clienteEdicao.setCpf(txtCpf.getText());
+            clienteEdicao.setSexo(comboSexo.getValue());
+            clienteEdicao.setTelefone(txtTelefone.getText());
 
-                DAOCliente.updateDataClient(conn, clienteEdicao);
-            }
+            DAOCliente.updateDataClient(conn, clienteEdicao);
 
-            mostrarAlerta("Sucesso", "Operação realizada!");
+            mostrarAlerta("Sucesso", "Cliente atualizado!");
             fecharJanela();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            mostrarAlerta("Erro", "Falha ao salvar.");
+            mostrarAlerta("Erro", "Falha ao atualizar.");
         }
     }
 
